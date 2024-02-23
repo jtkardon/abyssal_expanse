@@ -1,0 +1,53 @@
+﻿  Animation.cpp
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\Animation.cpp(93,40): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\Animation.cpp(93,34): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\Animation.cpp(97,89): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\Animation.cpp(97,53): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\Animation.cpp(98,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\Animation.cpp(98,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Box.cpp
+  Clock.cpp
+  DisplayManager.cpp
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\DisplayManager.cpp(87,43): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\DisplayManager.cpp(89,44): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\DisplayManager.cpp(180,32): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\DisplayManager.cpp(186,34): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\DisplayManager.cpp(212,48): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Event.cpp
+  EventCollision.cpp
+  EventKeyboard.cpp
+  EventMouse.cpp
+  EventOut.cpp
+  EventStep.cpp
+  EventView.cpp
+  Frame.cpp
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\Frame.cpp(72,33): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\Frame.cpp(71,48): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  GameManager.cpp
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\GameManager.cpp(42,74): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\GameManager.cpp(42,56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  InputManager.cpp
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\InputManager.cpp(59,74): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\InputManager.cpp(59,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\InputManager.cpp(66,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\InputManager.cpp(66,57): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\InputManager.cpp(73,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\InputManager.cpp(73,57): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  LogManager.cpp
+  main.cpp
+  Manager.cpp
+  Music.cpp
+  Object.cpp
+  ObjectList.cpp
+  Generating Code...
+  Compiling...
+  ObjectListIterator.cpp
+  ResourceManager.cpp
+  Sound.cpp
+  Sprite.cpp
+  Vector.cpp
+C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\Vector.cpp(53,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  ViewObject.cpp
+  WorldManager.cpp
+  Generating Code...
+  abyssal_expanse.vcxproj -> C:\Users\jtkar\Documents\Visual Studio 2022\Projects\abyssal_expanse\x64\Debug\abyssal_expanse.exe
