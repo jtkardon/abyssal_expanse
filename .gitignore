@@ -1,2 +1,15 @@
 x64*
 dragonfly.log
+x64\
+x64/
+/x64/
+.x64/
+.vs/
+*.vsidx
+.vs/abyssal_expanse/v17/.suo
+*.db
+x64\
+dragonfly.log*
+*.idb
+*.obj
+dragonfly.log
