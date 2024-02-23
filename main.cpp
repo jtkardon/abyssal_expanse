@@ -15,6 +15,6 @@ int main(int argc, char* argv[]) {
 
     LM.setFlush(true);
 
-    LM.writeLog("LogTest2\n");
+    LM.writeLog("LogTest23\n");
     GM.shutDown();
 }
