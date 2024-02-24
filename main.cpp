@@ -39,6 +39,8 @@ int main(int argc, char* argv[]) {
 void loadResources(void) {
     RM.loadSprite("sprites/rightSub.txt", "rightSub");
     RM.loadSprite("sprites/leftSub.txt", "leftSub");
+    RM.loadSprite("sprites/laserLeft.txt", "laserLeft");
+    RM.loadSprite("sprites/laserRight.txt", "laserRight");
 }
 
 //Adds objects to game

@@ -4,6 +4,8 @@
 #include "DisplayManager.h"
 #include "EventStep.h"
 #include "LogManager.h"
+#include "Laser.h"
+
 
 Sub::Sub()
 {
@@ -16,14 +18,18 @@ Sub::Sub()
 	//setPosition(df::Vector(7, 2));
 	setPosition(df::Vector(50, 5));
 	//setSpeed(1);
+	dirFacing = 1;
+	laser_slowdown = 15;
+	laser_countdown = 0;
 	
 }
+
 
 Sub::~Sub() {
 	GM.setGameOver();
 }
 
-//Listen for keyboard events
+//Listen for keyboard, mouse, step events
 int Sub::eventHandler(const df::Event* p_e)
 {
 	if (p_e->getType() == df::KEYBOARD_EVENT) {
@@ -32,9 +38,15 @@ int Sub::eventHandler(const df::Event* p_e)
 		keyHandler(p_keyboard_event);
 		return 1;
 	}
+	if (p_e->getType() == df::MOUSE_EVENT) {
+		const df::EventMouse* p_mouse_event =
+			dynamic_cast <const df::EventMouse*> (p_e);
+		mouseHandler(p_mouse_event);
+		return 1;
+	}
 	else if (p_e->getType() == df::STEP_EVENT) {
-		//If stays on window, allow move	
-
+		laser_countdown--;
+		return 1;
 	}
 	return 0;
 }
@@ -63,6 +75,7 @@ void Sub::keyHandler(const df::EventKeyboard * p_keyboard_event)
 		break;
 	case df::Keyboard::A: // left
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_DOWN) {
+			dirFacing = -1;
 			setSprite("leftSub");
 			moveX(-1.5);
 		}
@@ -72,6 +85,7 @@ void Sub::keyHandler(const df::EventKeyboard * p_keyboard_event)
 		break;
 	case df::Keyboard::D: // right
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_DOWN) {
+			dirFacing = 1;
 			moveX(1.5);
 			setSprite("rightSub");
 		}
@@ -82,10 +96,38 @@ void Sub::keyHandler(const df::EventKeyboard * p_keyboard_event)
 	}
 }
 
+void Sub::mouseHandler(const df::EventMouse* p_mouse_event)
+{
+
+	if (p_mouse_event->getMouseAction() == df::PRESSED) {
+
+		if (p_mouse_event->getMouseButton() == df::Mouse::LEFT) {
+			if (laser_countdown > 0)
+				return;
+			laser_countdown = laser_slowdown;
+			df::Vector dir = df::Vector(dirFacing, 0);
+			dir.normalize();
+			dir.scale(5);
+			Laser* laser = new Laser();
+			laser->setVelocity(dir);
+			if (dirFacing == 1) {
+				df::Vector new_pos = df::Vector(getPosition().getX() + 7, getPosition().getY() + 1);
+				laser->setPosition(new_pos);
+				laser->setSprite("laserRight");
+			}
+			else {
+				df::Vector new_pos = df::Vector(getPosition().getX() - 7, getPosition().getY() + 1);
+				laser->setPosition(new_pos);
+				laser->setSprite("laserLeft");
+			}
+		}
+	}
+}
+
 //Moves the sub the given distance in the X direction
 void Sub::moveX(float delta)
 {
-
+	//If stays on window, allow move	
 	df::Vector new_pos(getPosition().getX() + delta, getPosition().getY());
 	if ((new_pos.getX() > 6) &&
 		(new_pos.getX() < WM.getBoundary().getHorizontal() - 1)) {
@@ -97,8 +139,10 @@ void Sub::moveX(float delta)
 	
 }
 
-
+//Moves the sub the given distance in the Y direction
 void Sub::moveY(float delta) {
+
+	//If stays on window, allow move	
 	df::Vector new_pos(getPosition().getX(), getPosition().getY() + delta);
 	if ((new_pos.getY() > 1) &&
 		(new_pos.getY() < WM.getBoundary().getVertical() - 1)) {
