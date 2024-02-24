@@ -10,7 +10,6 @@
 using namespace df;
 df::WorldManager::WorldManager() {
 	setType("WorldManager");
-	firstLoop = true;
 }
 
 df::WorldManager::~WorldManager()
@@ -120,14 +119,12 @@ void df::WorldManager::draw()
 		for (li.first(); !li.isDone(); li.next()) {
 			Box box = getWorldBox(li.currentObject(), li.currentObject()->getPosition());
 			if (li.currentObject()->getAltitude() == i) {
+				LM.writeLog("Drawing current obj tpye:%s, boxinte=%d, box=(%f,%f) pos=(%f,%f)\n", li.currentObject()->getType().c_str(), boxIntersectsBox(box, view), box.getCorner().getX(), box.getCorner().getY(), li.currentObject()->getPosition().getX(), li.currentObject()->getPosition().getY());
 				if (boxIntersectsBox(box, view) || dynamic_cast <ViewObject*> (li.currentObject())) {
 					li.currentObject()->draw();
 				}
 			}
 		}
-	}
-	if (firstLoop) {
-		firstLoop = false;
 	}
 }
 

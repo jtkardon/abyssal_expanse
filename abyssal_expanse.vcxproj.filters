@@ -105,6 +105,9 @@
     <ClInclude Include="Laser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Bubble.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="abyssal_expanse.rc">
@@ -197,6 +200,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Laser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bubble.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

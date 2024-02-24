@@ -4,6 +4,7 @@
 #include "ResourceManager.h"
 #include "LogManager.h"
 #include "Sub.h"
+#include "Bubble.h"
 
 using namespace std;
 
@@ -46,5 +47,9 @@ void loadResources(void) {
 //Adds objects to game
 void populateWorld(void) {
     new Sub;
+
+    for (int i = 0; i < 100; i++) {
+        new Bubble(true);
+    }
 }
 

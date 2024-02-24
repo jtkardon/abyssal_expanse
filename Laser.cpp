@@ -3,13 +3,13 @@
 #include "EventOut.h"
 #include "WorldManager.h"
 
+
 Laser::Laser()
 {
-    //setSprite("laser");
     setSolidness(df::SOFT);
     setType("weapon");
-    //df::Vector new_pos = df::Vector(sub_pos.getX() )
-    //setPosition(sub_pos);
+    setAltitude(1);
+
     setSpeed(1);
 }
 

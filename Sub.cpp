@@ -14,10 +14,9 @@ Sub::Sub()
 	setType("sub");
 	//Increase size of world to 4 times the size
 	WM.setBoundary(df::Box(df::Vector(), DM.getHorizontal() * 2, DM.getVertical() * 2));
-	//WM.setViewFollowing(this);
-	//setPosition(df::Vector(7, 2));
-	setPosition(df::Vector(50, 5));
-	//setSpeed(1);
+	WM.setViewFollowing(this);
+	setPosition(df::Vector(7, 2));
+	setAltitude(2);
 	dirFacing = 1;
 	laser_slowdown = 15;
 	laser_countdown = 0;
@@ -130,7 +129,7 @@ void Sub::moveX(float delta)
 	//If stays on window, allow move	
 	df::Vector new_pos(getPosition().getX() + delta, getPosition().getY());
 	if ((new_pos.getX() > 6) &&
-		(new_pos.getX() < WM.getBoundary().getHorizontal() - 1)) {
+		(new_pos.getX() < WM.getBoundary().getHorizontal() - 6)) {
 		setVelocity(df::Vector(delta, getDirection().getY()));
 	}
 	else {
@@ -145,7 +144,7 @@ void Sub::moveY(float delta) {
 	//If stays on window, allow move	
 	df::Vector new_pos(getPosition().getX(), getPosition().getY() + delta);
 	if ((new_pos.getY() > 1) &&
-		(new_pos.getY() < WM.getBoundary().getVertical() - 1)) {
+		(new_pos.getY() < WM.getBoundary().getVertical() - 2)) {
 		setVelocity(df::Vector(getDirection().getX(), delta));
 	}
 	else {

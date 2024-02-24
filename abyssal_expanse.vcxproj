@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Box.h" />
+    <ClInclude Include="Bubble.h" />
     <ClInclude Include="Clock.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="DisplayManager.h" />
@@ -184,6 +185,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Box.cpp" />
+    <ClCompile Include="Bubble.cpp" />
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="DisplayManager.cpp" />
     <ClCompile Include="Event.cpp" />
