@@ -172,6 +172,7 @@
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="Sub.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="ViewObject.h" />
     <ClInclude Include="WorldManager.h" />
@@ -204,6 +205,7 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="Sub.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="ViewObject.cpp" />
     <ClCompile Include="WorldManager.cpp" />

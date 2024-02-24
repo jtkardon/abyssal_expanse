@@ -99,6 +99,9 @@
     <ClInclude Include="WorldManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sub.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="abyssal_expanse.rc">
@@ -185,6 +188,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WorldManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sub.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
