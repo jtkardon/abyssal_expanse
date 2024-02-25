@@ -77,5 +77,21 @@ void df::InputManager::getInput()
             GM.setGameOver();
         }
     }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+        EventKeyboard ek(Keyboard::W, EventKeyboardAction::KEY_DOWN);
+        onEvent(&ek);
+    } 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+        EventKeyboard ek(Keyboard::A, EventKeyboardAction::KEY_DOWN);
+        onEvent(&ek);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+        EventKeyboard ek(Keyboard::S, EventKeyboardAction::KEY_DOWN);
+        onEvent(&ek);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+        EventKeyboard ek(Keyboard::D, EventKeyboardAction::KEY_DOWN);
+        onEvent(&ek);
+    }
 
 }
