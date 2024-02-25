@@ -5,7 +5,8 @@
 #include "EventStep.h"
 #include "LogManager.h"
 #include "Laser.h"
-
+#include "Shark.h"
+#include "EventSub.h"
 
 Sub::Sub()
 {
@@ -20,7 +21,6 @@ Sub::Sub()
 	dirFacing = 1;
 	laser_slowdown = 15;
 	laser_countdown = 0;
-	
 }
 
 
@@ -45,6 +45,8 @@ int Sub::eventHandler(const df::Event* p_e)
 	}
 	else if (p_e->getType() == df::STEP_EVENT) {
 		laser_countdown--;
+		EventSub es(this);
+		WM.onEvent(&es);
 		return 1;
 	}
 	return 0;
@@ -120,7 +122,11 @@ void Sub::mouseHandler(const df::EventMouse* p_mouse_event)
 				laser->setSprite("laserLeft");
 			}
 		}
+		else {
+			new Shark(df::Vector(getPosition().getX() + 10, getPosition().getY() + 10));
+		}
 	}
+	
 }
 
 //Moves the sub the given distance in the X direction
@@ -151,4 +157,5 @@ void Sub::moveY(float delta) {
 		setVelocity(df::Vector(getDirection().getX(), 0));
 	}
 }
+
 
