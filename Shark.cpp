@@ -17,6 +17,7 @@ Shark::Shark(df::Vector pos)
 	setAltitude(1);
 	health = 2;
 	weaponHitByID = -1;
+	changedSpeed = 0.5;
 }
 
 //Listen for sub, step events
@@ -46,8 +47,9 @@ int Shark::eventHandler(const df::Event* p_e)
 void Shark::step(int count) {
 	if (count % 3 == 0) {
 		df::Vector newDir = df::Vector((sub->getPosition().getX() - getPosition().getX()), (sub->getPosition().getY() - getPosition().getY()));
+		newDir.normalize();
 		setDirection(newDir);
-		setSpeed(0.5);
+		setSpeed(changedSpeed);
 		if (newDir.getX() > 0) //Moving right
 		{
 			if (health == 2)
@@ -83,9 +85,13 @@ void Shark::collide(const df::EventCollision* p_collision_event)
 
 
 		health--;
-		if (health == 0)
+		if (health == 0) {
+			df::EventView ev("Score", 10, true);
+			WM.onEvent(&ev);
 			WM.markForDelete(this);
+		}
 		else { //Change color of shark to red if got hit
+			changedSpeed = 0.75;
 			if (getDirection().getX() > 0)
 				setSprite("sharkRightRed");
 			else

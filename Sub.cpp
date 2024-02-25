@@ -29,6 +29,11 @@ Sub::Sub()
 	healthView->setViewString("Health");
 	healthView->setValue(health);
 	healthView->setColor(df::RED);
+
+	df::ViewObject* points = new df::ViewObject;
+	points->setLocation(df::TOP_RIGHT);
+	points->setViewString("Score");
+	points->setColor(df::GREEN);
 }
 
 

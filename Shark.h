@@ -9,6 +9,7 @@ private:
 	Sub* sub;
 	int health;
 	int weaponHitByID;
+	float changedSpeed;
 	void step(int count);
 	void collide(const df::EventCollision* p_collision_event);
 
