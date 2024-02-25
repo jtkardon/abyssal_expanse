@@ -14,6 +14,7 @@ Bubble::Bubble(bool first)
 	setAltitude(0);
 	char bubbleChars[] = { 'o', '0', 'O', '°' };
 	bubbleChar = bubbleChars[rand() % 4];
+	
 	if (first) {
 		setVelocity(df::Vector(0, (float)-1.0 / (rand() % 10 + 1)));
 		df::Vector p((float)(rand() % (int)WM.getBoundary().getHorizontal()),
@@ -34,7 +35,7 @@ Bubble::Bubble(bool first)
 int Bubble::draw()
 {
 	//LM.writeLog("DRAw\n");
-	return DM.drawCh(getPosition(), bubbleChar, df::CYAN);
+	return DM.drawCh(getPosition(), bubbleChar, df::BLUE);
 }
 
 int Bubble::eventHandler(const df::Event* p_e)

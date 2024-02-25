@@ -1,6 +1,6 @@
 #pragma once
 #include "Object.h"
-
+#include "Color.h"
 
 class Bubble : public df::Object {
 private:
