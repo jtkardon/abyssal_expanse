@@ -49,6 +49,7 @@ void loadResources(void) {
     RM.loadSprite("sprites/saucer-spr.txt", "spawner");
     RM.loadSprite("sprites/harpoonLeft.txt", "harpoonLeft");
     RM.loadSprite("sprites/harpoonRight.txt", "harpoonRight");
+    RM.loadSprite("sprites/coin.txt", "coin");
 }
 
 //Adds objects to game

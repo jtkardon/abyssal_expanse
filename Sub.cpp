@@ -210,6 +210,12 @@ void Sub::collide(const df::EventCollision* p_collision_event)
 			//WM.markForDelete(this);
 		}
 	}
+	//Only check object2 to prevent double collisions
+	else if (p_collision_event->getObject2()->getType() == "coin") {
+		WM.markForDelete(p_collision_event->getObject2());
+		df::EventView ev("Score", 20, true);
+		WM.onEvent(&ev);
+	}
 
 }
 

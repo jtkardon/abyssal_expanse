@@ -151,6 +151,7 @@
     <ClInclude Include="Box.h" />
     <ClInclude Include="Bubble.h" />
     <ClInclude Include="Clock.h" />
+    <ClInclude Include="Coin.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="DisplayManager.h" />
     <ClInclude Include="Event.h" />
@@ -193,6 +194,7 @@
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Bubble.cpp" />
     <ClCompile Include="Clock.cpp" />
+    <ClCompile Include="Coin.cpp" />
     <ClCompile Include="DisplayManager.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventAfterUpdate.cpp" />
