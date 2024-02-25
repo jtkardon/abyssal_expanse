@@ -2,6 +2,10 @@
 #include "EventStep.h"
 #include "EventSub.h"
 #include "WorldManager.h"
+#include "EventView.h"
+#include "ViewObject.h"
+#include "LogManager.h"
+#include <iostream>
 
 Shark::Shark(df::Vector pos)
 {
@@ -12,6 +16,7 @@ Shark::Shark(df::Vector pos)
 	setSolidness(df::SOFT);
 	setAltitude(1);
 	health = 2;
+	weaponHitByID = -1;
 }
 
 //Listen for sub, step events
@@ -65,21 +70,15 @@ void Shark::collide(const df::EventCollision* p_collision_event)
 		p_collision_event->getObject2()->getType() == "weapon") {
 
 		//Make sure the shark isn't hit by the same weapon twice
-		df::ObjectListIterator oli(&weaponsHitBy);
-		
 		if (p_collision_event->getObject1()->getType() == "weapon") {
-			for (oli.first(); !oli.isDone(); oli.next()) {
-				if (oli.currentObject() == p_collision_event->getObject1()) //If already hit by this weapon, ignore the collision
-					return;
-			}
-			weaponsHitBy.insert(p_collision_event->getObject1());
+			if (weaponHitByID == p_collision_event->getObject1()->getId()) //If already hit by this weapon, ignore the collision
+				return;
+			weaponHitByID = p_collision_event->getObject1()->getId();
 		}
 		else {
-			for (oli.first(); !oli.isDone(); oli.next()) {
-				if (oli.currentObject() == p_collision_event->getObject2()) //If already hit by this weapon, ignore the collision
-					return;
-			}
-			weaponsHitBy.insert(p_collision_event->getObject2());
+			if (weaponHitByID == p_collision_event->getObject2()->getId()) //If already hit by this weapon, ignore the collision
+				return;
+			weaponHitByID = p_collision_event->getObject2()->getId();
 		}
 
 

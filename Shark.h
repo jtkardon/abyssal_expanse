@@ -8,7 +8,7 @@ class Shark : public df::Object {
 private:
 	Sub* sub;
 	int health;
-	df::ObjectList weaponsHitBy;
+	int weaponHitByID;
 	void step(int count);
 	void collide(const df::EventCollision* p_collision_event);
 
