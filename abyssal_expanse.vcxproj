@@ -154,6 +154,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="DisplayManager.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="EventAfterUpdate.h" />
     <ClInclude Include="EventCollision.h" />
     <ClInclude Include="EventKeyboard.h" />
     <ClInclude Include="EventMouse.h" />
@@ -163,6 +164,8 @@
     <ClInclude Include="EventView.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Generator.h" />
+    <ClInclude Include="Harpoon.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Laser.h" />
     <ClInclude Include="LogManager.h" />
@@ -175,6 +178,7 @@
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Shark.h" />
     <ClInclude Include="Sound.h" />
+    <ClInclude Include="Spawner.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Sub.h" />
     <ClInclude Include="Vector.h" />
@@ -191,6 +195,7 @@
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="DisplayManager.cpp" />
     <ClCompile Include="Event.cpp" />
+    <ClCompile Include="EventAfterUpdate.cpp" />
     <ClCompile Include="EventCollision.cpp" />
     <ClCompile Include="EventKeyboard.cpp" />
     <ClCompile Include="EventMouse.cpp" />
@@ -200,6 +205,8 @@
     <ClCompile Include="EventView.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Generator.cpp" />
+    <ClCompile Include="Harpoon.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Laser.cpp" />
     <ClCompile Include="LogManager.cpp" />
@@ -212,6 +219,7 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Shark.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Sub.cpp" />
     <ClCompile Include="Vector.cpp" />

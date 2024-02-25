@@ -32,7 +32,9 @@ int Laser::eventHandler(const df::Event* p_e)
 void Laser::collide(const df::EventCollision* p_collision_event)
 {
     if (p_collision_event->getObject1()->getType() == "shark" ||
-        p_collision_event->getObject2()->getType() == "shark") {
+        p_collision_event->getObject2()->getType() == "shark" || 
+        p_collision_event->getObject1()->getType() == "spawner" ||
+            p_collision_event->getObject2()->getType() == "spawner") {
         WM.markForDelete(this);
     }
 }

@@ -5,7 +5,7 @@
 #include "LogManager.h"
 #include "Sub.h"
 #include "Bubble.h"
-
+#include "Generator.h"
 using namespace std;
 
 void loadResources(void);
@@ -46,11 +46,14 @@ void loadResources(void) {
     RM.loadSprite("sprites/sharkLeft.txt", "sharkLeft");
     RM.loadSprite("sprites/sharkRightRed.txt", "sharkRightRed");
     RM.loadSprite("sprites/sharkLeftRed.txt", "sharkLeftRed");
+    RM.loadSprite("sprites/saucer-spr.txt", "spawner");
+    RM.loadSprite("sprites/harpoonLeft.txt", "harpoonLeft");
+    RM.loadSprite("sprites/harpoonRight.txt", "harpoonRight");
 }
 
 //Adds objects to game
 void populateWorld(void) {
-    new Sub;
+    new Generator;
 
     for (int i = 0; i < 100; i++) {
         new Bubble(true);

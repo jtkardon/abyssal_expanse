@@ -14,13 +14,13 @@ Shark::Shark(df::Vector pos)
 	setPosition(pos);
 	setSpeed(.5);
 	setSolidness(df::SOFT);
-	setAltitude(1);
+	setAltitude(2);
 	health = 2;
 	weaponHitByID = -1;
 	changedSpeed = 0.5;
 }
 
-//Listen for sub, step events
+//Listen for sub, step, collision events
 int Shark::eventHandler(const df::Event* p_e)
 {
 	if (p_e->getType() == df::STEP_EVENT) {
@@ -97,6 +97,12 @@ void Shark::collide(const df::EventCollision* p_collision_event)
 			else
 				setSprite("sharkLeftRed");
 		}
+	}
+	else if (p_collision_event->getObject1()->getType() == "harpoon" ||
+		p_collision_event->getObject2()->getType() == "harpoon") {
+		df::EventView ev("Score", 10, true);
+		WM.onEvent(&ev);
+		WM.markForDelete(this);
 	}
 }
 

@@ -9,11 +9,12 @@
 #include "EventSub.h"
 #include "ViewObject.h"
 #include "EventView.h"
+#include "Spawner.h"
+#include "Harpoon.h"
 
 Sub::Sub()
 {
 	setSprite("rightSub");
-	setSolidness(df::SOFT);
 	setType("sub");
 	//Increase size of world to 4 times the size
 	WM.setBoundary(df::Box(df::Vector(), DM.getHorizontal() * 2, DM.getVertical() * 2));
@@ -23,6 +24,8 @@ Sub::Sub()
 	dirFacing = 1;
 	laser_slowdown = 15;
 	laser_countdown = 0;
+	harpoon_slowdown = 30;
+	harpoon_countdown = 0;
 	health = 3;
 	df::ViewObject* healthView = new df::ViewObject;
 	healthView->setLocation(df::TOP_LEFT);
@@ -58,6 +61,7 @@ int Sub::eventHandler(const df::Event* p_e)
 	}
 	else if (p_e->getType() == df::STEP_EVENT) {
 		laser_countdown--;
+		harpoon_countdown--;
 		EventSub es(this);
 		WM.onEvent(&es);
 		return 1;
@@ -122,31 +126,44 @@ void Sub::mouseHandler(const df::EventMouse* p_mouse_event)
 	if (p_mouse_event->getMouseAction() == df::PRESSED) {
 
 		if (p_mouse_event->getMouseButton() == df::Mouse::LEFT) {
-			if (laser_countdown > 0)
-				return;
-			laser_countdown = laser_slowdown;
-			df::Vector dir = df::Vector(dirFacing, 0);
-			dir.normalize();
-			dir.scale(5);
-			Laser* laser = new Laser();
-			laser->setVelocity(dir);
-			if (dirFacing == 1) {
-				df::Vector new_pos = df::Vector(getPosition().getX() + 7, getPosition().getY() + 1);
-				laser->setPosition(new_pos);
-				laser->setSprite("laserRight");
-			}
-			else {
-				df::Vector new_pos = df::Vector(getPosition().getX() - 7, getPosition().getY() + 1);
-				laser->setPosition(new_pos);
-				laser->setSprite("laserLeft");
-			}
+			fireLaser();
 		}
-		else {
-			new Shark(df::Vector(getPosition().getX() + 10, getPosition().getY() + 10));
+		else if (p_mouse_event->getMouseButton() == df::Mouse::RIGHT) {
+			if (harpoon_countdown > 0)
+				return;
+			harpoon_countdown = harpoon_slowdown;
+			new Harpoon(this);
 		}
 	}
 	
 }
+
+//Creates laser object and sets its velocity depending on direction of the sub
+void Sub::fireLaser()
+{
+	if (laser_countdown > 0)
+		return;
+	laser_countdown = laser_slowdown;
+	//Set speed of laser to 5
+	df::Vector dir = df::Vector(dirFacing, 0);
+	dir.normalize();
+	dir.scale(5);
+	Laser* laser = new Laser();
+	laser->setVelocity(dir);
+	
+	if (dirFacing == 1) {
+		df::Vector new_pos = df::Vector(getPosition().getX() + 7, getPosition().getY() + 1);
+		laser->setPosition(new_pos);
+		laser->setSprite("laserRight");
+	}
+	else {
+		df::Vector new_pos = df::Vector(getPosition().getX() - 7, getPosition().getY() + 1);
+		laser->setPosition(new_pos);
+		laser->setSprite("laserLeft");
+	}
+}
+
+
 
 //Moves the sub the given distance in the X direction
 void Sub::moveX(float delta)
@@ -190,9 +207,12 @@ void Sub::collide(const df::EventCollision* p_collision_event)
 		df::EventView ev("Health", health, false);
 		WM.onEvent(&ev);
 		if (health == 0) {
-			WM.markForDelete(this);
+			//WM.markForDelete(this);
 		}
 	}
 
 }
 
+int Sub::getDirFacing() {
+	return dirFacing;
+}

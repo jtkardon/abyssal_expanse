@@ -12,6 +12,7 @@
 #include "DisplayManager.h"
 #include "InputManager.h"
 #include "ResourceManager.h"
+#include "EventAfterUpdate.h"
 
 df::GameManager::GameManager() {
     setType("GameManager");
@@ -77,6 +78,10 @@ void df::GameManager::run()
         
         IM.getInput();
         WM.update();
+
+        EventAfterUpdate eau;
+        onEvent(&eau);
+
         WM.draw();
         DM.swapBuffers();
       
