@@ -18,7 +18,7 @@ Sub::Sub()
 	//Increase size of world to 4 times the size
 	WM.setBoundary(df::Box(df::Vector(), DM.getHorizontal() * 2, DM.getVertical() * 2));
 	WM.setViewFollowing(this);
-	setPosition(df::Vector(7, 2));
+	setPosition(df::Vector(7, 5));
 	setAltitude(2);
 	dirFacing = 1;
 	laser_slowdown = 15;
