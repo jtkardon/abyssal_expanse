@@ -21,7 +21,6 @@ Object::Object()
 	setPosition(Vector());
 	altitude = 0;
 	setVelocity(Vector());
-	color = WHITE;
 	setSolidness(HARD);
 	WM.insertObject(this);
 	box = Box();

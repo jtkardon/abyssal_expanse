@@ -7,6 +7,8 @@
 #include "Laser.h"
 #include "Shark.h"
 #include "EventSub.h"
+#include "ViewObject.h"
+#include "EventView.h"
 
 Sub::Sub()
 {
@@ -21,6 +23,12 @@ Sub::Sub()
 	dirFacing = 1;
 	laser_slowdown = 15;
 	laser_countdown = 0;
+	health = 3;
+	df::ViewObject* healthView = new df::ViewObject;
+	healthView->setLocation(df::TOP_LEFT);
+	healthView->setViewString("Health");
+	healthView->setValue(health);
+	healthView->setColor(df::RED);
 }
 
 
@@ -47,6 +55,12 @@ int Sub::eventHandler(const df::Event* p_e)
 		laser_countdown--;
 		EventSub es(this);
 		WM.onEvent(&es);
+		return 1;
+	}
+	else if (p_e->getType() == df::COLLISION_EVENT) {
+		const df::EventCollision* p_collision_event =
+			dynamic_cast <const df::EventCollision*> (p_e);
+		collide(p_collision_event);
 		return 1;
 	}
 	return 0;
@@ -158,4 +172,22 @@ void Sub::moveY(float delta) {
 	}
 }
 
+//Manages any collisions with the sub
+void Sub::collide(const df::EventCollision* p_collision_event)
+{
+	//Only check object1 to prevent double collisions
+	if (p_collision_event->getObject1()->getType() == "shark") {
+		WM.markForDelete(p_collision_event->getObject1());
+		health--;
+		if (health < 0) {
+			health = 0;
+		}
+		df::EventView ev("Health", health, false);
+		WM.onEvent(&ev);
+		if (health == 0) {
+			WM.markForDelete(this);
+		}
+	}
+
+}
 

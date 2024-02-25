@@ -33,7 +33,9 @@ Bubble::Bubble(bool first)
 
 int Bubble::draw()
 {
+	//if (DM.worldToView(getPosition()).getY() > 3)
 	return DM.drawCh(getPosition(), bubbleChar, df::BLUE);
+	//return 0;
 }
 
 int Bubble::eventHandler(const df::Event* p_e)

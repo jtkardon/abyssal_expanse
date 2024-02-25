@@ -2,7 +2,7 @@
 frames 3
 width 13
 height 5
-color white
+color red
 slowdown 4
 transparency #
 </HEADER>

@@ -44,6 +44,8 @@ void loadResources(void) {
     RM.loadSprite("sprites/laserRight.txt", "laserRight");
     RM.loadSprite("sprites/sharkRight.txt", "sharkRight");
     RM.loadSprite("sprites/sharkLeft.txt", "sharkLeft");
+    RM.loadSprite("sprites/sharkRightRed.txt", "sharkRightRed");
+    RM.loadSprite("sprites/sharkLeftRed.txt", "sharkLeftRed");
 }
 
 //Adds objects to game

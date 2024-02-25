@@ -1,12 +1,18 @@
 #pragma once
 #include "Object.h"
 #include "Sub.h"
+#include "EventCollision.h"
+#include "ObjectList.h"
 
 class Shark : public df::Object {
 private:
-	void step(int count);
 	Sub* sub;
+	int health;
+	df::ObjectList weaponsHitBy;
+	void step(int count);
+	void collide(const df::EventCollision* p_collision_event);
 
+		
 public:
 	Shark(df::Vector pos);
 	int eventHandler(const df::Event* p_e) override;

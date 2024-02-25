@@ -22,7 +22,6 @@ namespace df {
 		std::string type;  // User-defined identification.
 		Vector pos;        // Position in game world.
 		int altitude;
-		Color color;
 		Vector direction; //Direction vector
 		float speed;
 		Solidness solidness; //Solidness of object
