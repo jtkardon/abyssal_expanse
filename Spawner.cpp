@@ -10,7 +10,7 @@ Spawner::Spawner(df::Vector pos)
 	setAltitude(1);
 	setSprite("spawner");
 
-	spawn_slowdown = 60;
+	spawn_slowdown = 90;
 	spawn_countdown = spawn_slowdown;
 	setPosition(pos);
 

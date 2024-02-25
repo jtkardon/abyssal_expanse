@@ -207,7 +207,7 @@ void Sub::collide(const df::EventCollision* p_collision_event)
 		df::EventView ev("Health", health, false);
 		WM.onEvent(&ev);
 		if (health == 0) {
-			//WM.markForDelete(this);
+			WM.markForDelete(this);
 		}
 	}
 	//Only check object2 to prevent double collisions

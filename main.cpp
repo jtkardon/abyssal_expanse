@@ -46,7 +46,7 @@ void loadResources(void) {
     RM.loadSprite("sprites/sharkLeft.txt", "sharkLeft");
     RM.loadSprite("sprites/sharkRightRed.txt", "sharkRightRed");
     RM.loadSprite("sprites/sharkLeftRed.txt", "sharkLeftRed");
-    RM.loadSprite("sprites/saucer-spr.txt", "spawner");
+    RM.loadSprite("sprites/spawner.txt", "spawner");
     RM.loadSprite("sprites/harpoonLeft.txt", "harpoonLeft");
     RM.loadSprite("sprites/harpoonRight.txt", "harpoonRight");
     RM.loadSprite("sprites/coin.txt", "coin");
