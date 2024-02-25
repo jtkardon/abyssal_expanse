@@ -5,7 +5,10 @@
 #include "EventStep.h"
 #include "LogManager.h"
 #include "Laser.h"
-
+#include "Shark.h"
+#include "EventSub.h"
+#include "ViewObject.h"
+#include "EventView.h"
 
 Sub::Sub()
 {
@@ -15,12 +18,22 @@ Sub::Sub()
 	//Increase size of world to 4 times the size
 	WM.setBoundary(df::Box(df::Vector(), DM.getHorizontal() * 2, DM.getVertical() * 2));
 	WM.setViewFollowing(this);
-	setPosition(df::Vector(7, 2));
+	setPosition(df::Vector(7, 5));
 	setAltitude(2);
 	dirFacing = 1;
 	laser_slowdown = 15;
 	laser_countdown = 0;
-	
+	health = 3;
+	df::ViewObject* healthView = new df::ViewObject;
+	healthView->setLocation(df::TOP_LEFT);
+	healthView->setViewString("Health");
+	healthView->setValue(health);
+	healthView->setColor(df::RED);
+
+	df::ViewObject* points = new df::ViewObject;
+	points->setLocation(df::TOP_RIGHT);
+	points->setViewString("Score");
+	points->setColor(df::GREEN);
 }
 
 
@@ -45,6 +58,14 @@ int Sub::eventHandler(const df::Event* p_e)
 	}
 	else if (p_e->getType() == df::STEP_EVENT) {
 		laser_countdown--;
+		EventSub es(this);
+		WM.onEvent(&es);
+		return 1;
+	}
+	else if (p_e->getType() == df::COLLISION_EVENT) {
+		const df::EventCollision* p_collision_event =
+			dynamic_cast <const df::EventCollision*> (p_e);
+		collide(p_collision_event);
 		return 1;
 	}
 	return 0;
@@ -120,7 +141,11 @@ void Sub::mouseHandler(const df::EventMouse* p_mouse_event)
 				laser->setSprite("laserLeft");
 			}
 		}
+		else {
+			new Shark(df::Vector(getPosition().getX() + 10, getPosition().getY() + 10));
+		}
 	}
+	
 }
 
 //Moves the sub the given distance in the X direction
@@ -150,5 +175,24 @@ void Sub::moveY(float delta) {
 	else {
 		setVelocity(df::Vector(getDirection().getX(), 0));
 	}
+}
+
+//Manages any collisions with the sub
+void Sub::collide(const df::EventCollision* p_collision_event)
+{
+	//Only check object1 to prevent double collisions
+	if (p_collision_event->getObject1()->getType() == "shark") {
+		WM.markForDelete(p_collision_event->getObject1());
+		health--;
+		if (health < 0) {
+			health = 0;
+		}
+		df::EventView ev("Health", health, false);
+		WM.onEvent(&ev);
+		if (health == 0) {
+			WM.markForDelete(this);
+		}
+	}
+
 }
 

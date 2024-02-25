@@ -38,10 +38,14 @@ int main(int argc, char* argv[]) {
 
 //Loads sounds and sprites
 void loadResources(void) {
-    RM.loadSprite("sprites/rightSub.txt", "rightSub");
-    RM.loadSprite("sprites/leftSub.txt", "leftSub");
+    RM.loadSprite("sprites/subRight.txt", "rightSub");
+    RM.loadSprite("sprites/subLeft.txt", "leftSub");
     RM.loadSprite("sprites/laserLeft.txt", "laserLeft");
     RM.loadSprite("sprites/laserRight.txt", "laserRight");
+    RM.loadSprite("sprites/sharkRight.txt", "sharkRight");
+    RM.loadSprite("sprites/sharkLeft.txt", "sharkLeft");
+    RM.loadSprite("sprites/sharkRightRed.txt", "sharkRightRed");
+    RM.loadSprite("sprites/sharkLeftRed.txt", "sharkLeftRed");
 }
 
 //Adds objects to game

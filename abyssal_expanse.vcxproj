@@ -159,6 +159,7 @@
     <ClInclude Include="EventMouse.h" />
     <ClInclude Include="EventOut.h" />
     <ClInclude Include="EventStep.h" />
+    <ClInclude Include="EventSub.h" />
     <ClInclude Include="EventView.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="GameManager.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="ObjectListIterator.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Shark.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Sub.h" />
@@ -194,6 +196,7 @@
     <ClCompile Include="EventMouse.cpp" />
     <ClCompile Include="EventOut.cpp" />
     <ClCompile Include="EventStep.cpp" />
+    <ClCompile Include="EventSub.cpp" />
     <ClCompile Include="EventView.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -207,6 +210,7 @@
     <ClCompile Include="ObjectList.cpp" />
     <ClCompile Include="ObjectListIterator.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Shark.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Sub.cpp" />

@@ -23,7 +23,6 @@ Bubble::Bubble(bool first)
 	}
 	else {
 		setVelocity(df::Vector(0, (float)-1.0 / (rand() % 10 + 1)));
-		//df::Vector p;
 		df::Vector p((float)(rand() % (int)WM.getBoundary().getHorizontal()),
 		(float)((WM.getView().getVertical() + WM.getView().getCorner().getY()) + rand() % 20));
 	
@@ -34,8 +33,9 @@ Bubble::Bubble(bool first)
 
 int Bubble::draw()
 {
-	//LM.writeLog("DRAw\n");
+	//if (DM.worldToView(getPosition()).getY() > 3)
 	return DM.drawCh(getPosition(), bubbleChar, df::BLUE);
+	//return 0;
 }
 
 int Bubble::eventHandler(const df::Event* p_e)
