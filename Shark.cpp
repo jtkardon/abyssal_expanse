@@ -14,13 +14,13 @@ Shark::Shark(df::Vector pos)
 	setPosition(pos);
 	setSpeed(.5);
 	setSolidness(df::SOFT);
-	setAltitude(1);
+	setAltitude(2);
 	health = 2;
 	weaponHitByID = -1;
 	changedSpeed = 0.5;
 }
 
-//Listen for sub, step events
+//Listen for sub, step, collision events
 int Shark::eventHandler(const df::Event* p_e)
 {
 	if (p_e->getType() == df::STEP_EVENT) {
@@ -43,7 +43,7 @@ int Shark::eventHandler(const df::Event* p_e)
 	return 0;
 }
 
-//Every frame, make the shark move towards the player
+//Every 3 frames, make the shark move towards the player
 void Shark::step(int count) {
 	if (count % 3 == 0) {
 		df::Vector newDir = df::Vector((sub->getPosition().getX() - getPosition().getX()), (sub->getPosition().getY() - getPosition().getY()));
@@ -66,6 +66,7 @@ void Shark::step(int count) {
 	}
 }
 
+//Handle sharks collisions
 void Shark::collide(const df::EventCollision* p_collision_event)
 {
 	if (p_collision_event->getObject1()->getType() == "weapon" ||
@@ -75,28 +76,37 @@ void Shark::collide(const df::EventCollision* p_collision_event)
 		if (p_collision_event->getObject1()->getType() == "weapon") {
 			if (weaponHitByID == p_collision_event->getObject1()->getId()) //If already hit by this weapon, ignore the collision
 				return;
+			//If new weapon, then store id
 			weaponHitByID = p_collision_event->getObject1()->getId();
 		}
 		else {
 			if (weaponHitByID == p_collision_event->getObject2()->getId()) //If already hit by this weapon, ignore the collision
 				return;
+			//If new weapon, then store id
 			weaponHitByID = p_collision_event->getObject2()->getId();
 		}
 
-
 		health--;
+		//If shark's health is 0, delete and increment score
 		if (health == 0) {
 			df::EventView ev("Score", 10, true);
 			WM.onEvent(&ev);
 			WM.markForDelete(this);
 		}
-		else { //Change color of shark to red if got hit
+		else { //Change color of shark to red if got hit but didn't die
 			changedSpeed = 0.75;
 			if (getDirection().getX() > 0)
 				setSprite("sharkRightRed");
 			else
 				setSprite("sharkLeftRed");
 		}
+	}
+	//Harpoon one shots shark
+	else if (p_collision_event->getObject1()->getType() == "harpoon" ||
+		p_collision_event->getObject2()->getType() == "harpoon") {
+		df::EventView ev("Score", 10, true);
+		WM.onEvent(&ev);
+		WM.markForDelete(this);
 	}
 }
 

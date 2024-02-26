@@ -5,6 +5,9 @@
 #include "EventOut.h"
 #include "LogManager.h"
 
+//First boolean detemines whether the bubble is spawned in at the start of the game or while it is running
+//If true, bubbles can spawn on the screen
+//If false, bubbles will only spawn off screen
 Bubble::Bubble(bool first)
 {
 
@@ -12,6 +15,7 @@ Bubble::Bubble(bool first)
 	setSolidness(df::SPECTRAL);
 
 	setAltitude(0);
+	//Randomizes what character the bubble is
 	char bubbleChars[] = { 'o', '0', 'O', '°' };
 	bubbleChar = bubbleChars[rand() % 4];
 	
@@ -31,15 +35,17 @@ Bubble::Bubble(bool first)
 
 }
 
+//Overrides draw function to just draw a character
 int Bubble::draw()
 {
-	//if (DM.worldToView(getPosition()).getY() > 3)
 	return DM.drawCh(getPosition(), bubbleChar, df::BLUE);
-	//return 0;
+
 }
 
+// Checks for out event
 int Bubble::eventHandler(const df::Event* p_e)
 {
+	//When goes out, delete object and create new bubble
 	if (p_e->getType() == df::OUT_EVENT) {
 		new Bubble(false);
 		WM.markForDelete(this);

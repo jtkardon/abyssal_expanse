@@ -9,11 +9,12 @@
 #include "EventSub.h"
 #include "ViewObject.h"
 #include "EventView.h"
+#include "Spawner.h"
+#include "Harpoon.h"
 
 Sub::Sub()
 {
 	setSprite("rightSub");
-	setSolidness(df::SOFT);
 	setType("sub");
 	//Increase size of world to 4 times the size
 	WM.setBoundary(df::Box(df::Vector(), DM.getHorizontal() * 2, DM.getVertical() * 2));
@@ -23,13 +24,18 @@ Sub::Sub()
 	dirFacing = 1;
 	laser_slowdown = 15;
 	laser_countdown = 0;
+	harpoon_slowdown = 30;
+	harpoon_countdown = 0;
 	health = 3;
+
+	//Creates health view object
 	df::ViewObject* healthView = new df::ViewObject;
 	healthView->setLocation(df::TOP_LEFT);
 	healthView->setViewString("Health");
 	healthView->setValue(health);
 	healthView->setColor(df::RED);
 
+	//Creates score view object
 	df::ViewObject* points = new df::ViewObject;
 	points->setLocation(df::TOP_RIGHT);
 	points->setViewString("Score");
@@ -58,6 +64,7 @@ int Sub::eventHandler(const df::Event* p_e)
 	}
 	else if (p_e->getType() == df::STEP_EVENT) {
 		laser_countdown--;
+		harpoon_countdown--;
 		EventSub es(this);
 		WM.onEvent(&es);
 		return 1;
@@ -72,6 +79,11 @@ int Sub::eventHandler(const df::Event* p_e)
 }
 
 // Take appropriate action according to key pressed
+// Q - quit
+// WASD - move sub
+// Pressing one of WASD will set velocity of sub
+// Releasing will set velocity to 0;
+// AD also change the subs sprite 
 void Sub::keyHandler(const df::EventKeyboard * p_keyboard_event)
 {
 	switch (p_keyboard_event->getKey()) {
@@ -116,37 +128,51 @@ void Sub::keyHandler(const df::EventKeyboard * p_keyboard_event)
 	}
 }
 
+//Handles mouse events
 void Sub::mouseHandler(const df::EventMouse* p_mouse_event)
 {
 
 	if (p_mouse_event->getMouseAction() == df::PRESSED) {
 
-		if (p_mouse_event->getMouseButton() == df::Mouse::LEFT) {
-			if (laser_countdown > 0)
-				return;
-			laser_countdown = laser_slowdown;
-			df::Vector dir = df::Vector(dirFacing, 0);
-			dir.normalize();
-			dir.scale(5);
-			Laser* laser = new Laser();
-			laser->setVelocity(dir);
-			if (dirFacing == 1) {
-				df::Vector new_pos = df::Vector(getPosition().getX() + 7, getPosition().getY() + 1);
-				laser->setPosition(new_pos);
-				laser->setSprite("laserRight");
-			}
-			else {
-				df::Vector new_pos = df::Vector(getPosition().getX() - 7, getPosition().getY() + 1);
-				laser->setPosition(new_pos);
-				laser->setSprite("laserLeft");
-			}
+		if (p_mouse_event->getMouseButton() == df::Mouse::LEFT) { //Laser
+			fireLaser();
 		}
-		else {
-			new Shark(df::Vector(getPosition().getX() + 10, getPosition().getY() + 10));
+		else if (p_mouse_event->getMouseButton() == df::Mouse::RIGHT) { //Harpoon
+			if (harpoon_countdown > 0)
+				return;
+			harpoon_countdown = harpoon_slowdown;
+			new Harpoon(this);
 		}
 	}
 	
 }
+
+//Creates laser object and sets its velocity depending on direction of the sub
+void Sub::fireLaser()
+{
+	if (laser_countdown > 0)
+		return;
+	laser_countdown = laser_slowdown;
+	//Set speed of laser to 5
+	df::Vector dir = df::Vector(dirFacing, 0);
+	dir.normalize();
+	dir.scale(5);
+	Laser* laser = new Laser();
+	laser->setVelocity(dir);
+	
+	if (dirFacing == 1) { //Facing right
+		df::Vector new_pos = df::Vector(getPosition().getX() + 7, getPosition().getY() + 1);
+		laser->setPosition(new_pos);
+		laser->setSprite("laserRight");
+	}
+	else { //Facing left
+		df::Vector new_pos = df::Vector(getPosition().getX() - 7, getPosition().getY() + 1);
+		laser->setPosition(new_pos);
+		laser->setSprite("laserLeft");
+	}
+}
+
+
 
 //Moves the sub the given distance in the X direction
 void Sub::moveX(float delta)
@@ -193,6 +219,16 @@ void Sub::collide(const df::EventCollision* p_collision_event)
 			WM.markForDelete(this);
 		}
 	}
+	//Only check object2 to prevent double collisions
+	else if (p_collision_event->getObject2()->getType() == "coin") {
+		WM.markForDelete(p_collision_event->getObject2());
+		df::EventView ev("Score", 20, true);
+		WM.onEvent(&ev);
+	}
 
 }
 
+//Gets direction facing
+int Sub::getDirFacing() {
+	return dirFacing;
+}

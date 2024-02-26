@@ -1,0 +1,17 @@
+<HEADER>
+frames 1
+width 11
+height 3
+color white
+slowdown 4
+transparency #
+</HEADER>
+<BODY>
+ _________ 
+|  SHARK  |
+|_________|
+end
+</BODY>
+<FOOTER>
+version 1
+</FOOTER>
