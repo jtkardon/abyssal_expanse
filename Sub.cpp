@@ -27,12 +27,15 @@ Sub::Sub()
 	harpoon_slowdown = 30;
 	harpoon_countdown = 0;
 	health = 3;
+
+	//Creates health view object
 	df::ViewObject* healthView = new df::ViewObject;
 	healthView->setLocation(df::TOP_LEFT);
 	healthView->setViewString("Health");
 	healthView->setValue(health);
 	healthView->setColor(df::RED);
 
+	//Creates score view object
 	df::ViewObject* points = new df::ViewObject;
 	points->setLocation(df::TOP_RIGHT);
 	points->setViewString("Score");
@@ -76,6 +79,11 @@ int Sub::eventHandler(const df::Event* p_e)
 }
 
 // Take appropriate action according to key pressed
+// Q - quit
+// WASD - move sub
+// Pressing one of WASD will set velocity of sub
+// Releasing will set velocity to 0;
+// AD also change the subs sprite 
 void Sub::keyHandler(const df::EventKeyboard * p_keyboard_event)
 {
 	switch (p_keyboard_event->getKey()) {
@@ -120,15 +128,16 @@ void Sub::keyHandler(const df::EventKeyboard * p_keyboard_event)
 	}
 }
 
+//Handles mouse events
 void Sub::mouseHandler(const df::EventMouse* p_mouse_event)
 {
 
 	if (p_mouse_event->getMouseAction() == df::PRESSED) {
 
-		if (p_mouse_event->getMouseButton() == df::Mouse::LEFT) {
+		if (p_mouse_event->getMouseButton() == df::Mouse::LEFT) { //Laser
 			fireLaser();
 		}
-		else if (p_mouse_event->getMouseButton() == df::Mouse::RIGHT) {
+		else if (p_mouse_event->getMouseButton() == df::Mouse::RIGHT) { //Harpoon
 			if (harpoon_countdown > 0)
 				return;
 			harpoon_countdown = harpoon_slowdown;
@@ -151,12 +160,12 @@ void Sub::fireLaser()
 	Laser* laser = new Laser();
 	laser->setVelocity(dir);
 	
-	if (dirFacing == 1) {
+	if (dirFacing == 1) { //Facing right
 		df::Vector new_pos = df::Vector(getPosition().getX() + 7, getPosition().getY() + 1);
 		laser->setPosition(new_pos);
 		laser->setSprite("laserRight");
 	}
-	else {
+	else { //Facing left
 		df::Vector new_pos = df::Vector(getPosition().getX() - 7, getPosition().getY() + 1);
 		laser->setPosition(new_pos);
 		laser->setSprite("laserLeft");
@@ -219,6 +228,7 @@ void Sub::collide(const df::EventCollision* p_collision_event)
 
 }
 
+//Gets direction facing
 int Sub::getDirFacing() {
 	return dirFacing;
 }

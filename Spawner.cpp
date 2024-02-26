@@ -17,9 +17,9 @@ Spawner::Spawner(df::Vector pos)
 	maxHealth = 5;
 	health = maxHealth;
 	weaponHitByID = new int[maxHealth];
-	//for (int i = 0; i < health; i++)
 }
 
+//Handles step, collision events
 int Spawner::eventHandler(const df::Event* p_e)
 {
 	if (p_e->getType() == df::STEP_EVENT) {
@@ -34,6 +34,7 @@ int Spawner::eventHandler(const df::Event* p_e)
 	return 0;
 }
 
+//Every 90 frames, spawn a shark at the spawner's location
 void Spawner::step() {
 	spawn_countdown--;
 	if (spawn_countdown > 0) {
@@ -43,6 +44,7 @@ void Spawner::step() {
 	new Shark(getPosition());
 }
 
+//Handles collisions
 void Spawner::collide(const df::EventCollision* p_collision_event)
 {
 	if (p_collision_event->getObject1()->getType() == "weapon" ||
@@ -73,6 +75,8 @@ void Spawner::collide(const df::EventCollision* p_collision_event)
 			weaponHitByID[maxHealth - health] = p_collision_event->getObject2()->getId();
 		}
 
+		//Laser does 2 damage to spawners
+		//Harpoon does 1 damage to spawners
 		if (p_collision_event->getObject1()->getType() == "weapon" || p_collision_event->getObject2()->getType() == "weapon")
 			health -= 2;
 		else

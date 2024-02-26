@@ -54,8 +54,10 @@ void loadResources(void) {
 
 //Adds objects to game
 void populateWorld(void) {
+    //Create a generator
     new Generator;
 
+    //Create 100 bubbles
     for (int i = 0; i < 100; i++) {
         new Bubble(true);
     }
