@@ -53,8 +53,10 @@ void loadResources(void) {
     RM.loadMusic("Theme_idea.wav", "themeMusic");
     RM.loadSound("Harpoon.wav", "harpoon");
     RM.loadSound("sharkNoise.wav", "sharkNoise");
-    RM.loadSound("bubbles", "bubbles");
-    RM.loadSound("waterLazerSounds", )
+    RM.loadSound("bubbles.wav", "bubbles");
+    RM.loadSound("waterLazerSounds.wav", "lazer");
+    RM.loadSound("gameSFX1.wav", "SFX1");
+    RM.loadSound("gameSFX2", "SFX2");
 }
 
 //Adds objects to game
