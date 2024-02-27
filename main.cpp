@@ -50,13 +50,13 @@ void loadResources(void) {
     RM.loadSprite("sprites/harpoonLeft.txt", "harpoonLeft");
     RM.loadSprite("sprites/harpoonRight.txt", "harpoonRight");
     RM.loadSprite("sprites/coin.txt", "coin");
-    RM.loadMusic("Theme_idea.wav", "themeMusic");
-    RM.loadSound("Harpoon.wav", "harpoon");
-    RM.loadSound("sharkNoise.wav", "sharkNoise");
-    RM.loadSound("bubbles.wav", "bubbles");
-    RM.loadSound("waterLazerSounds.wav", "lazer");
-    RM.loadSound("gameSFX1.wav", "SFX1");
-    RM.loadSound("gameSFX2", "SFX2");
+    RM.loadMusic("sounds/sharkNoise.wav", "themeMusic");
+    RM.loadSound("sounds/Harpoon.wav", "harpoon");
+    RM.loadSound("sounds/sharkNoise.wav", "sharkNoise");
+    RM.loadSound("sounds/bubbles.wav", "bubbles");
+    RM.loadSound("sounds/waterLazerSound.wav", "laser");
+    RM.loadSound("sounds/gameSFX1.wav", "SFX1");
+    RM.loadSound("sounds/gameSFX2.wav", "SFX2");
 }
 
 //Adds objects to game
