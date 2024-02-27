@@ -11,7 +11,7 @@ Music::Music()
 int Music::loadMusic(std::string filename)
 {
 	if (!music.openFromFile(filename)) {
-		LM.writeLog("Music::loadMusic() error loading sound from file: %s\n", filename);
+		LM.writeLog("Music::loadMusic() error loading music from file: %s\n", filename.c_str());
 		return -1;
 	}
 	return 0;
