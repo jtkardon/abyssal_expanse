@@ -20,6 +20,11 @@ Shark::Shark(df::Vector pos)
 	changedSpeed = 0.5;
 }
 
+Shark::~Shark() {
+	df::EventView ev("Score", 10, true);
+	WM.onEvent(&ev);
+}
+
 //Listen for sub, step, collision events
 int Shark::eventHandler(const df::Event* p_e)
 {
@@ -89,8 +94,6 @@ void Shark::collide(const df::EventCollision* p_collision_event)
 		health--;
 		//If shark's health is 0, delete and increment score
 		if (health == 0) {
-			df::EventView ev("Score", 10, true);
-			WM.onEvent(&ev);
 			WM.markForDelete(this);
 		}
 		else { //Change color of shark to red if got hit but didn't die
@@ -104,8 +107,6 @@ void Shark::collide(const df::EventCollision* p_collision_event)
 	//Harpoon one shots shark
 	else if (p_collision_event->getObject1()->getType() == "harpoon" ||
 		p_collision_event->getObject2()->getType() == "harpoon") {
-		df::EventView ev("Score", 10, true);
-		WM.onEvent(&ev);
 		WM.markForDelete(this);
 	}
 }

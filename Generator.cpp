@@ -57,8 +57,8 @@ void Generator::spawn(std::string type)
 	}
 
 	//First get a random position in the world, at least 5 units away from top and left walls
-	df::Vector pos((float)(rand() % (int)(WM.getBoundary().getHorizontal() - 5) + 5),
-		(float)(rand() % (int)(WM.getBoundary().getVertical() - 5)) + 5);
+	df::Vector pos((float)(rand() % (int)(WM.getBoundary().getHorizontal() - 5)),
+		(float)(rand() % (int)(WM.getBoundary().getVertical() - 5)));
 
 	//Counter just breaks the while loop after 10 times to prevent lag
 	int counter = 50;
@@ -69,8 +69,8 @@ void Generator::spawn(std::string type)
 		pos.getY() > sub->getPosition().getY() - 7 &&
 		pos.getY() < sub->getPosition().getY() + 7) 
 	{
-		pos = df::Vector((float)(rand() % (int)(WM.getBoundary().getHorizontal() - 5) + 5),
-			(float)(rand() % (int)(WM.getBoundary().getVertical() - 5)) + 5);
+		pos = df::Vector((float)(rand() % (int)(WM.getBoundary().getHorizontal() - 5)),
+			(float)(rand() % (int)(WM.getBoundary().getVertical() - 5)));
 		counter--;
 		if (counter < 0)
 			break;
