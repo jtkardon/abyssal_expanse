@@ -50,7 +50,7 @@ void loadResources(void) {
     RM.loadSprite("sprites/harpoonLeft.txt", "harpoonLeft");
     RM.loadSprite("sprites/harpoonRight.txt", "harpoonRight");
     RM.loadSprite("sprites/coin.txt", "coin");
-    RM.loadMusic("sounds/sharkNoise.wav", "themeMusic");
+    RM.loadMusic("sounds/Theme_Idea.wav", "themeMusic");
     RM.loadSound("sounds/Harpoon.wav", "harpoon");
     RM.loadSound("sounds/sharkNoise.wav", "sharkNoise");
     RM.loadSound("sounds/bubbles.wav", "bubbles");
