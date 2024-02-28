@@ -17,7 +17,7 @@ df::Sound::~Sound()
 int df::Sound::loadSound(std::string filename)
 {
 	if (!sound_buffer.loadFromFile(filename)) {
-		LM.writeLog("Sound::loadSound() error loading sound from file: %s\n", filename);
+		LM.writeLog("Sound::loadSound() error loading sound from file: %s\n", filename.c_str());
 		return -1;
 	}
 	sound.setBuffer(sound_buffer);

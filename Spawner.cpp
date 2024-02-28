@@ -19,6 +19,11 @@ Spawner::Spawner(df::Vector pos)
 	weaponHitByID = new int[maxHealth];
 }
 
+Spawner::~Spawner() {
+	df::EventView ev("Score", 50, true);
+	WM.onEvent(&ev);
+}
+
 //Handles step, collision events
 int Spawner::eventHandler(const df::Event* p_e)
 {
@@ -83,8 +88,7 @@ void Spawner::collide(const df::EventCollision* p_collision_event)
 			health--;
 		
 		if (health <= 0) {
-			df::EventView ev("Score", 50, true);
-			WM.onEvent(&ev);
+	
 			WM.markForDelete(this);
 		}
 	}

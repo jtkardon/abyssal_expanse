@@ -16,5 +16,6 @@ private:
 		
 public:
 	Shark(df::Vector pos);
+	~Shark();
 	int eventHandler(const df::Event* p_e) override;
 };

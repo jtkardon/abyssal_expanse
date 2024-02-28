@@ -16,6 +16,7 @@ private:
 
 public:
 	Spawner(df::Vector pos);
+	~Spawner();
 	int eventHandler(const df::Event* p_e) override;
 
 };
