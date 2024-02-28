@@ -11,6 +11,7 @@
 #include "EventView.h"
 #include "Spawner.h"
 #include "Harpoon.h"
+#include "ResourceManager.h"
 
 Sub::Sub()
 {
@@ -40,11 +41,16 @@ Sub::Sub()
 	points->setLocation(df::TOP_RIGHT);
 	points->setViewString("Score");
 	points->setColor(df::GREEN);
+
+	theme = RM.getMusic("themeMusic");
+	theme->getMusic()->setVolume(50);
+	theme->play();
 }
 
 
 Sub::~Sub() {
 	GM.setGameOver();
+	theme->stop();
 }
 
 //Listen for keyboard, mouse, step events
@@ -141,6 +147,8 @@ void Sub::mouseHandler(const df::EventMouse* p_mouse_event)
 			if (harpoon_countdown > 0)
 				return;
 			harpoon_countdown = harpoon_slowdown;
+			df::Sound* harpoonSound = RM.getSound("harpoon");
+			harpoonSound->play();
 			new Harpoon(this);
 		}
 	}
@@ -153,6 +161,8 @@ void Sub::fireLaser()
 	if (laser_countdown > 0)
 		return;
 	laser_countdown = laser_slowdown;
+	df::Sound* laserSound = RM.getSound("laser");
+	laserSound->play();
 	//Set speed of laser to 5
 	df::Vector dir = df::Vector(dirFacing, 0);
 	dir.normalize();
@@ -221,6 +231,8 @@ void Sub::collide(const df::EventCollision* p_collision_event)
 	}
 	//Only check object2 to prevent double collisions
 	else if (p_collision_event->getObject2()->getType() == "coin") {
+		df::Sound* coinSound = RM.getSound("coin");
+		coinSound->play();
 		WM.markForDelete(p_collision_event->getObject2());
 		df::EventView ev("Score", 20, true);
 		WM.onEvent(&ev);
