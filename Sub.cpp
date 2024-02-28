@@ -12,6 +12,7 @@
 #include "Spawner.h"
 #include "Harpoon.h"
 #include "ResourceManager.h"
+#include "GameOver.h"
 
 Sub::Sub()
 {
@@ -49,7 +50,7 @@ Sub::Sub()
 
 
 Sub::~Sub() {
-	GM.setGameOver();
+	new GameOver();
 	theme->stop();
 }
 
@@ -218,6 +219,8 @@ void Sub::collide(const df::EventCollision* p_collision_event)
 {
 	//Only check object1 to prevent double collisions
 	if (p_collision_event->getObject1()->getType() == "shark") {
+		df::Sound* hitSound = RM.getSound("hit");
+		hitSound->play();
 		WM.markForDelete(p_collision_event->getObject1());
 		health--;
 		if (health < 0) {

@@ -6,15 +6,16 @@
 #include "ViewObject.h"
 #include "LogManager.h"
 #include <iostream>
+#include "ResourceManager.h"
 
 Shark::Shark(df::Vector pos)
 {
 	setType("shark");
 	setSprite("sharkRight");
-	setPosition(pos);
 	setSpeed(.5);
 	setSolidness(df::SOFT);
 	setAltitude(2);
+	setPosition(pos);
 	health = 2;
 	weaponHitByID = -1;
 	changedSpeed = 0.5;
@@ -23,6 +24,8 @@ Shark::Shark(df::Vector pos)
 Shark::~Shark() {
 	df::EventView ev("Score", 10, true);
 	WM.onEvent(&ev);
+	df::Sound* dieSound = RM.getSound("dieShark");
+	//dieSound->play();
 }
 
 //Listen for sub, step, collision events
@@ -90,7 +93,8 @@ void Shark::collide(const df::EventCollision* p_collision_event)
 			//If new weapon, then store id
 			weaponHitByID = p_collision_event->getObject2()->getId();
 		}
-
+		df::Sound* hitSound = RM.getSound("hitShark");
+		hitSound->play();
 		health--;
 		//If shark's health is 0, delete and increment score
 		if (health == 0) {

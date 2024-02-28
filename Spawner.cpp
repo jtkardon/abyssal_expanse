@@ -49,6 +49,7 @@ void Spawner::step() {
 		return;
 	}
 	spawn_countdown = spawn_slowdown;
+	
 	new Shark(getPosition());
 }
 
