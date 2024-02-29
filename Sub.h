@@ -4,6 +4,7 @@
 #include "EventMouse.h"
 #include "EventCollision.h"
 #include "Music.h"
+#include "ViewObject.h"
 
 class Sub : public df::Object {
 private:
@@ -19,6 +20,7 @@ private:
 	void moveX(float delta);
 	void moveY(float delta);
 	void fireLaser();
+	df::ViewObject* points;
 	Music* theme;
 	
 public:

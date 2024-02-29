@@ -7,7 +7,6 @@
 #include "Laser.h"
 #include "Shark.h"
 #include "EventSub.h"
-#include "ViewObject.h"
 #include "EventView.h"
 #include "Spawner.h"
 #include "Harpoon.h"
@@ -38,7 +37,7 @@ Sub::Sub()
 	healthView->setColor(df::RED);
 
 	//Creates score view object
-	df::ViewObject* points = new df::ViewObject;
+	points = new df::ViewObject;
 	points->setLocation(df::TOP_RIGHT);
 	points->setViewString("Score");
 	points->setColor(df::GREEN);
@@ -50,7 +49,7 @@ Sub::Sub()
 
 
 Sub::~Sub() {
-	new GameOver();
+	new GameOver(points->getValue());
 	theme->stop();
 }
 
