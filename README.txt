@@ -28,6 +28,8 @@ Laser.h
 Shark.
 Spawner.h
 Sub.h
+GameOver.h
+GameStart.h
 
 .cpp files:
 Bubble.cpp
@@ -40,6 +42,8 @@ Laser.cpp
 Shark.cpp
 Spawner.cpp
 Sub.cpp
+GameOver.cpp
+GameStart.cpp
 main.cpp
 
 All sprites are stored in the sprites folder:
@@ -57,12 +61,29 @@ spawner.txt
 subLeft.txt
 subRight.txt
 
+
+All sprites are stored in the sprites folder:
+Sounds we created:
+bubbles.wav
+coin.wav
+Game_Title_Music.wav
+gameOver.wav
+gameSFX2.wav
+Harpoon.wav
+hitShark.wav
+hitsub.wav
+sharkDeath.wav
+spawnerCreated.wav
+Theme_Idea.wav
+waterLazerSound.wav
+
+
 To play our game: 
 The objective of Abyssal Expanse is to survive as long as possible and accumalate as many points as you can. 
 You can move in all 4 direction and have a laser and harpoon attack
 Shark Spawners will randomly appear across the map
 Spawners have 5 hit points
-They take 2 damage from the laser but 1 damage from the harpoon
+They take 1 damage from weapons.
 
 Every few seconds, a shark spawner will spawn a shark.
 The sharks have 2 hit points
@@ -87,7 +108,7 @@ W: Sub goes up
 A: Sub goes right
 S: Sub goes down
 D: Sub goes right
-Q: Quits the game
+Q: ends the game while plaing. quits game on title creen.
 
 
 Game Implementations:
@@ -100,3 +121,8 @@ Game Implementations:
 -Points
 -Spawner (Place were sharks spawn from)
 -Generator which is invisible for helping to create spawners and coins
+-Game start screen
+-Game over screen/viewobject
+-
+
+
