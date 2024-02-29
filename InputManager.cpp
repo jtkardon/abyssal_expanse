@@ -73,7 +73,7 @@ void df::InputManager::getInput()
             em.setMousePosition(Vector(event.mouseButton.x, event.mouseButton.y));
             onEvent(&em);
         }
-        else if (event.type == sf::Event::Closed) {
+        else if (event.type == sf::Event::Closed) { //X Button Pressed
             GM.setGameOver();
         }
     }

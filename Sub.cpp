@@ -23,9 +23,9 @@ Sub::Sub()
 	setPosition(df::Vector(7, 5));
 	setAltitude(2);
 	dirFacing = 1;
-	laser_slowdown = 15;
+	laser_slowdown = 7;
 	laser_countdown = 0;
-	harpoon_slowdown = 30;
+	harpoon_slowdown = 20;
 	harpoon_countdown = 0;
 	health = 3;
 
@@ -94,8 +94,9 @@ void Sub::keyHandler(const df::EventKeyboard * p_keyboard_event)
 {
 	switch (p_keyboard_event->getKey()) {
 	case df::Keyboard::Q: // quit
-		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED)
+		if (p_keyboard_event->getKeyboardAction() == df::KEY_PRESSED) {
 			WM.markForDelete(this);
+		}
 		break;
 	case df::Keyboard::W: // up
 		if (p_keyboard_event->getKeyboardAction() == df::KEY_DOWN)
@@ -169,15 +170,12 @@ void Sub::fireLaser()
 	dir.scale(5);
 	Laser* laser = new Laser();
 	laser->setVelocity(dir);
-	
+	df::Vector new_pos = df::Vector(getPosition().getX(), getPosition().getY() + 1);
+	laser->setPosition(new_pos);
 	if (dirFacing == 1) { //Facing right
-		df::Vector new_pos = df::Vector(getPosition().getX() + 7, getPosition().getY() + 1);
-		laser->setPosition(new_pos);
 		laser->setSprite("laserRight");
 	}
 	else { //Facing left
-		df::Vector new_pos = df::Vector(getPosition().getX() - 7, getPosition().getY() + 1);
-		laser->setPosition(new_pos);
 		laser->setSprite("laserLeft");
 	}
 }

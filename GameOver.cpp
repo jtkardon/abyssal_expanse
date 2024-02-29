@@ -15,7 +15,6 @@ GameOver::GameOver(int score)
 	setLocation(df::CENTER_CENTER);
 	setSprite("gameover");
 	deleteCountdown = 100;
-	// Deletes generator first to make sure no new objects spawn
 	df::ObjectList allObjects = WM.getAllObjects();
 	df::ObjectListIterator oli(&allObjects);
 	this->score = score;
@@ -25,9 +24,9 @@ GameOver::GameOver(int score)
 		if (p_o->getType() == "shark" || p_o->getType() == "spawner" || p_o->getType() == "coin" || p_o->getType() == "generator")
 			WM.markForDelete(p_o);
 	}
+	//Makes sure object is in the center of the screen
 	df::Vector p(WM.getView().getHorizontal() * 3 / 6,
 		WM.getView().getVertical() / 2);
-
 	setPosition(DM.viewToWorld(p));
 
 }
@@ -53,7 +52,7 @@ int GameOver::draw()
 	return df::Object::draw();
 }
 
-//Gets step event
+//Gets step and after Update event
 int GameOver::eventHandler(const df::Event* p_e)
 {
 	if (p_e->getType() == df::STEP_EVENT) {
@@ -64,6 +63,7 @@ int GameOver::eventHandler(const df::Event* p_e)
 		return 1;
 	}
 	else if (p_e->getType() == AFTER_UPDATE_EVENT) {
+		//Make sure that score doesn't get updated from the gameover killing enemies
 		df::EventView ev("Score", score, false);
 		WM.onEvent(&ev);
 	}
