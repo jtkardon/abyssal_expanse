@@ -65,7 +65,7 @@ void loadResources(void) {
     RM.loadSound("sounds/gameSFX2.wav", "SFX2");
     RM.loadSound("sounds/hitSub.wav", "hit");
     RM.loadSound("sounds/hitShark.wav", "hitShark");
-    RM.loadSound("sounds/sharkDie.wav", "dieShark");
+    RM.loadSound("sounds/sharkDeath.wav", "dieShark");
     RM.loadSound("sounds/gameOVer.wav", "gameOver");
 }
 

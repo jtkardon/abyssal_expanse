@@ -25,7 +25,7 @@ Shark::~Shark() {
 	df::EventView ev("Score", 10, true);
 	WM.onEvent(&ev);
 	df::Sound* dieSound = RM.getSound("dieShark");
-	//dieSound->play();
+	dieSound->play();
 }
 
 //Listen for sub, step, collision events
