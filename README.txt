@@ -123,6 +123,5 @@ Game Implementations:
 -Generator which is invisible for helping to create spawners and coins
 -Game start screen
 -Game over screen/viewobject
--
 
 
