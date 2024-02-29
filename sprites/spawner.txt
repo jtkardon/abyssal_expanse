@@ -7,7 +7,7 @@ slowdown 4
 transparency #
 </HEADER>
 <BODY>
- _________ 
+\_________/
 |  SHARK  |
 |_________|
 end

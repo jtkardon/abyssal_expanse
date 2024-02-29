@@ -3,6 +3,7 @@
 #include "EventKeyboard.h"
 #include "EventMouse.h"
 #include "EventCollision.h"
+#include "Music.h"
 
 class Sub : public df::Object {
 private:
@@ -18,6 +19,7 @@ private:
 	void moveX(float delta);
 	void moveY(float delta);
 	void fireLaser();
+	Music* theme;
 	
 public:
 	Sub();

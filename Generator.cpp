@@ -12,7 +12,7 @@
 //Creates a coin in a random location every 150 frames
 Generator::Generator()
 {
-	setType("Generator");
+	setType("generator");
 	setSolidness(df::SPECTRAL);
 	sub = new Sub();
 	spawner_slowdown = 450;

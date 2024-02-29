@@ -165,6 +165,8 @@
     <ClInclude Include="EventView.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GameOver.h" />
+    <ClInclude Include="GameStart.h" />
     <ClInclude Include="Generator.h" />
     <ClInclude Include="Harpoon.h" />
     <ClInclude Include="InputManager.h" />
@@ -207,6 +209,8 @@
     <ClCompile Include="EventView.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="GameStart.cpp" />
     <ClCompile Include="Generator.cpp" />
     <ClCompile Include="Harpoon.cpp" />
     <ClCompile Include="InputManager.cpp" />

@@ -6,6 +6,7 @@
 #include "Sub.h"
 #include "Bubble.h"
 #include "Generator.h"
+#include "GameStart.h"
 using namespace std;
 
 void loadResources(void);
@@ -50,19 +51,28 @@ void loadResources(void) {
     RM.loadSprite("sprites/harpoonLeft.txt", "harpoonLeft");
     RM.loadSprite("sprites/harpoonRight.txt", "harpoonRight");
     RM.loadSprite("sprites/coin.txt", "coin");
+    RM.loadSprite("sprites/gameOver.txt", "gameover");
+    RM.loadSprite("sprites/gameStart.txt", "title");
+
     RM.loadMusic("sounds/Theme_Idea.wav", "themeMusic");
+    RM.loadMusic("sounds/Game_Title_Music.wav", "titleMusic");
+
     RM.loadSound("sounds/Harpoon.wav", "harpoon");
-    RM.loadSound("sounds/sharkNoise.wav", "sharkNoise");
+    RM.loadSound("sounds/spawnerCreated.wav", "spawnerCreated");
     RM.loadSound("sounds/bubbles.wav", "bubbles");
     RM.loadSound("sounds/waterLazerSound.wav", "laser");
-    RM.loadSound("sounds/gameSFX1.wav", "SFX1");
+    RM.loadSound("sounds/coin.wav", "coin");
     RM.loadSound("sounds/gameSFX2.wav", "SFX2");
+    RM.loadSound("sounds/hitSub.wav", "hit");
+    RM.loadSound("sounds/hitShark.wav", "hitShark");
+    RM.loadSound("sounds/sharkDeath.wav", "dieShark");
+    RM.loadSound("sounds/gameOVer.wav", "gameOver");
 }
 
 //Adds objects to game
 void populateWorld(void) {
-    //Create a generator
-    new Generator;
+    //Create a game start
+    new GameStart;
 
     //Create 100 bubbles
     for (int i = 0; i < 100; i++) {

@@ -3,6 +3,7 @@
 #include "WorldManager.h"
 #include "EventView.h"
 #include "LogManager.h"
+#include "ResourceManager.h"
 
 Spawner::Spawner(df::Vector pos)
 {
@@ -13,10 +14,12 @@ Spawner::Spawner(df::Vector pos)
 	spawn_slowdown = 90;
 	spawn_countdown = spawn_slowdown;
 	setPosition(pos);
-
+	
 	maxHealth = 5;
 	health = maxHealth;
 	weaponHitByID = new int[maxHealth];
+	df::Sound* spawnerCreated = RM.getSound("spawnerCreated");
+	spawnerCreated->play();
 }
 
 Spawner::~Spawner() {
@@ -46,6 +49,7 @@ void Spawner::step() {
 		return;
 	}
 	spawn_countdown = spawn_slowdown;
+	
 	new Shark(getPosition());
 }
 
