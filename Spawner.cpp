@@ -12,7 +12,7 @@ Spawner::Spawner(df::Vector pos)
 	setSprite("spawner");
 
 	spawn_slowdown = 90;
-	spawn_countdown = spawn_slowdown;
+	spawn_countdown = 30;
 	setPosition(pos);
 	
 	maxHealth = 5;
@@ -83,14 +83,8 @@ void Spawner::collide(const df::EventCollision* p_collision_event)
 		else {
 			weaponHitByID[maxHealth - health] = p_collision_event->getObject2()->getId();
 		}
-
-		//Laser does 2 damage to spawners
-		//Harpoon does 1 damage to spawners
-		if (p_collision_event->getObject1()->getType() == "weapon" || p_collision_event->getObject2()->getType() == "weapon")
-			health -= 2;
-		else
-			health--;
 		
+		health--;
 		if (health <= 0) {
 	
 			WM.markForDelete(this);

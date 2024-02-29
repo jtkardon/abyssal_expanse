@@ -13,11 +13,13 @@ GameStart::GameStart()
 	titleMusic->play();
 	WM.setViewPosition(df::Vector());
 
+	//Puts sprite in middle of screen
 	df::Vector p(WM.getView().getHorizontal() * 3 / 6,
 		WM.getView().getVertical() / 2);
 	setPosition(p);
 }
 
+//Handles keyboard events
 int GameStart::eventHandler(const df::Event* p_e)
 {
 	if (p_e->getType() == df::KEYBOARD_EVENT) {
